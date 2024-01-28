@@ -1,0 +1,30 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  binaryTargets   = ["native", "linux-musl"]
+  previewFeatures = ["interactiveTransactions", "fullTextSearch"]
+}
+
+model Produtor {
+  id                      Int      @id @default(autoincrement())
+  documento               String   @unique @db.VarChar(14)
+  nome                    String   @db.VarChar(64)
+  nomeFazenda             String   @db.VarChar(64)
+  cidade                  String   @db.VarChar(64)
+  estado                  String   @db.VarChar(64)
+  areaTotalFazenda        Decimal  @db.Decimal(10, 2)
+  areaAgricultavelFazenda Decimal  @db.Decimal(10, 2)
+  areaVegetacaoFazenda    Decimal  @db.Decimal(10, 2)
+  culturasFazenda         String[]
+
+  createdAt DateTime  @default(now())
+  updatedAt DateTime? @default(now())
+
+  @@index([id, nome])
+}
