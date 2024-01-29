@@ -1,0 +1,40 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Brain Ag",
+    "description": "Documentação da API contendo CRUD de Produtores e Totais para Dashboard",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "API de testes"
+    }
+  ],
+  "tags": [
+    {
+      "name": "produtor",
+      "description": "CRUD de Produtores"
+    },
+    {
+      "name": "dashboard",
+      "description": "Totais Dashboard"
+    }
+  ],
+  "paths": {
+    "/dashboard/totals": {
+      "$ref": "./paths/dashboard.json"
+    },
+    "/produtor": {
+      "$ref": "./paths/produtor.json"
+    },
+    "/produtor/{id}": {
+      "$ref": "./paths/produtor_id.json"
+    }
+  },
+  "components": {
+    "schemas": {
+      "$ref": "schemas/index.json"
+    }
+  }
+}

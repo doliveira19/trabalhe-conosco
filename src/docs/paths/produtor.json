@@ -1,0 +1,69 @@
+{
+  "post": {
+    "summary": "Criar Produtor",
+    "description": "Realiza o cadastro de um Produtor",
+    "tags": [
+      "produtor"
+    ],
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "../schemas/index.json#/Produtor"
+          },
+          "example": {
+            "documento": "67342387096",
+            "nome": "Teste",
+            "nomeFazenda": "Fazenda Teste",
+            "cidade": "Barueri",
+            "estado": "São Paulo",
+            "areaTotalFazenda": 200,
+            "areaAgricultavelFazenda": 100,
+            "areaVegetacaoFazenda": 100,
+            "culturasFazenda": [
+              "café",
+              "cana"
+            ]
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "Retorna o Produto criado",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "../schemas/index.json#/Produtor"
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Bad Request"
+      }
+    }
+  },
+  "get": {
+    "summary": "Retornar todos os Produtores",
+    "description": "Retorna todos os Produtores",
+    "tags": [
+      "produtor"
+    ],
+    "responses": {
+      "200": {
+        "description": "Retorna um array com todos os Produtores",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "../schemas/index.json#/Produtor"
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Bad Request"
+      }
+    }
+  }
+}

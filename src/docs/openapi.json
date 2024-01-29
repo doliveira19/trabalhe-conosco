@@ -1,0 +1,380 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Brain Ag",
+    "description": "Documentação da API contendo CRUD de Produtores e Totais para Dashboard",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "API de testes"
+    }
+  ],
+  "tags": [
+    {
+      "name": "produtor",
+      "description": "CRUD de Produtores"
+    },
+    {
+      "name": "dashboard",
+      "description": "Totais Dashboard"
+    }
+  ],
+  "paths": {
+    "/dashboard/totals": {
+      "get": {
+        "summary": "Retornar Totais Dashboard",
+        "description": "Retorna Totais para Dashboard (Total de fazendas em quantidade, Total de fazendas em hectares (área total), total por estado, total por cultura, total por uso de solo (Área agricultável e vegetação)",
+        "tags": [
+          "tools"
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorna Totais para Dashboard",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TotalsDashboard"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/produtor": {
+      "post": {
+        "summary": "Criar Produtor",
+        "description": "Realiza o cadastro de um Produtor",
+        "tags": [
+          "produtor"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Produtor"
+              },
+              "example": {
+                "documento": "67342387096",
+                "nome": "Teste",
+                "nomeFazenda": "Fazenda Teste",
+                "cidade": "Barueri",
+                "estado": "São Paulo",
+                "areaTotalFazenda": 200,
+                "areaAgricultavelFazenda": 100,
+                "areaVegetacaoFazenda": 100,
+                "culturasFazenda": [
+                  "café",
+                  "cana"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Retorna o Produto criado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Produtor"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "get": {
+        "summary": "Retornar todos os Produtores",
+        "description": "Retorna todos os Produtores",
+        "tags": [
+          "produtor"
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorna um array com todos os Produtores",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Produtor"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/produtor/{id}": {
+      "get": {
+        "summary": "Retornar um Produtor",
+        "description": "Retorna um Produtor",
+        "tags": [
+          "produtor"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id do Produtor",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Retorna o Produtor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Produtor"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "put": {
+        "summary": "Atualizar um Produtor",
+        "description": "Atualiza um Produtor",
+        "tags": [
+          "produtor"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id do Produtor",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateProdutorInput"
+              },
+              "example": {
+                "nome": "Teste",
+                "nomeFazenda": "Fazenda Teste",
+                "cidade": "Barueri",
+                "estado": "São Paulo",
+                "areaTotalFazenda": 200,
+                "areaAgricultavelFazenda": 100,
+                "areaVegetacaoFazenda": 100,
+                "culturasFazenda": [
+                  "café",
+                  "cana"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Retorna o Produtor atualizado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Produtor"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deletar um Produtor",
+        "description": "Deleta um Produtor",
+        "tags": [
+          "produtor"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id do Produtor",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "TotalsDashboard": {
+        "type": "object",
+        "properties": {
+          "qtyTotalFazendas": {
+            "type": "number"
+          },
+          "areaTotalFazendas": {
+            "type": "number"
+          },
+          "fazendasPorEstado": {
+            "type": "array",
+            "items": {
+              "properties": {
+                "estado": {
+                  "type": "string"
+                },
+                "area": {
+                  "type": "number"
+                },
+                "qty": {
+                  "type": "number"
+                }
+              }
+            }
+          },
+          "totalDeCulturas": {
+            "type": "array",
+            "items": {
+              "properties": {
+                "cultura": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "qty": {
+                  "type": "number"
+                }
+              }
+            }
+          },
+          "areaTotalAgricultavel": {
+            "type": "number"
+          },
+          "areaTotalVegetacao": {
+            "type": "number"
+          }
+        }
+      },
+      "Produtor": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "nome": {
+            "type": "string"
+          },
+          "documento": {
+            "type": "string"
+          },
+          "nomeFazenda": {
+            "type": "string"
+          },
+          "cidade": {
+            "type": "string"
+          },
+          "estado": {
+            "type": "string"
+          },
+          "areaTotalFazenda": {
+            "type": "number"
+          },
+          "areaAgricultavelFazenda": {
+            "type": "number"
+          },
+          "areaVegetacaoFazenda": {
+            "type": "number"
+          },
+          "culturasFazenda": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "nome",
+          "documento",
+          "nomeFazenda",
+          "cidade",
+          "estado",
+          "areaTotalFazenda",
+          "areaAgricultavelFazenda",
+          "areaVegetacaoFazenda",
+          "culturasFazenda"
+        ]
+      },
+      "UpdateProdutorInput": {
+        "type": "object",
+        "properties": {
+          "nome": {
+            "type": "string"
+          },
+          "nomeFazenda": {
+            "type": "string"
+          },
+          "cidade": {
+            "type": "string"
+          },
+          "estado": {
+            "type": "string"
+          },
+          "areaTotalFazenda": {
+            "type": "number"
+          },
+          "areaAgricultavelFazenda": {
+            "type": "number"
+          },
+          "areaVegetacaoFazenda": {
+            "type": "number"
+          },
+          "culturasFazenda": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "nome",
+          "documento",
+          "nomeFazenda",
+          "cidade",
+          "estado",
+          "areaTotalFazenda",
+          "areaAgricultavelFazenda",
+          "areaVegetacaoFazenda",
+          "culturasFazenda"
+        ]
+      }
+    }
+  }
+}

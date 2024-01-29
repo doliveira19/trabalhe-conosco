@@ -1,0 +1,143 @@
+{
+  "Produtor": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "number"
+      },
+      "nome": {
+        "type": "string"
+      },
+      "documento": {
+        "type": "string"
+      },
+      "nomeFazenda": {
+        "type": "string"
+      },
+      "cidade": {
+        "type": "string"
+      },
+      "estado": {
+        "type": "string"
+      },
+      "areaTotalFazenda": {
+        "type": "number"
+      },
+      "areaAgricultavelFazenda": {
+        "type": "number"
+      },
+      "areaVegetacaoFazenda": {
+        "type": "number"
+      },
+      "culturasFazenda": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "required": [
+      "nome",
+      "documento",
+      "nomeFazenda",
+      "cidade",
+      "estado",
+      "areaTotalFazenda",
+      "areaAgricultavelFazenda",
+      "areaVegetacaoFazenda",
+      "culturasFazenda"
+    ]
+  },
+  "UpdateProdutorInput": {
+    "type": "object",
+    "properties": {
+      "nome": {
+        "type": "string"
+      },
+      "nomeFazenda": {
+        "type": "string"
+      },
+      "cidade": {
+        "type": "string"
+      },
+      "estado": {
+        "type": "string"
+      },
+      "areaTotalFazenda": {
+        "type": "number"
+      },
+      "areaAgricultavelFazenda": {
+        "type": "number"
+      },
+      "areaVegetacaoFazenda": {
+        "type": "number"
+      },
+      "culturasFazenda": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "required": [
+      "nome",
+      "documento",
+      "nomeFazenda",
+      "cidade",
+      "estado",
+      "areaTotalFazenda",
+      "areaAgricultavelFazenda",
+      "areaVegetacaoFazenda",
+      "culturasFazenda"
+    ]
+  },
+  "TotalsDashboard": {
+    "type": "object",
+    "properties": {
+      "qtyTotalFazendas": {
+        "type": "number"
+      },
+      "areaTotalFazendas": {
+        "type": "number"
+      },
+      "fazendasPorEstado": {
+        "type": "array",
+        "items": {
+          "properties": {
+            "estado": {
+              "type": "string"
+            },
+            "area": {
+              "type": "number"
+            },
+            "qty": {
+              "type": "number"
+            }
+          }
+        }
+      },
+      "totalDeCulturas": {
+        "type": "array",
+        "items": {
+          "properties": {
+            "cultura": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "qty": {
+              "type": "number"
+            }
+          }
+        }
+      },
+      "areaTotalAgricultavel": {
+        "type": "number"
+      },
+      "areaTotalVegetacao": {
+        "type": "number"
+      }
+    }
+  }
+}

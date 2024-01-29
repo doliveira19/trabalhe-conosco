@@ -1,0 +1,116 @@
+{
+  "get": {
+    "summary": "Retornar um Produtor",
+    "description": "Retorna um Produtor",
+    "tags": [
+      "produtor"
+    ],
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "description": "id do Produtor",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      }
+    ],
+    "responses": {
+      "200": {
+        "description": "Retorna o Produtor",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "../schemas/index.json#/Produtor"
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Bad Request"
+      }
+    }
+  },
+  "put": {
+    "summary": "Atualizar um Produtor",
+    "description": "Atualiza um Produtor",
+    "tags": [
+      "produtor"
+    ],
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "description": "id do Produtor",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      }
+    ],
+    "requestBody": {
+      "content": {
+        "application/json": {
+          "schema": {
+            "$ref": "../schemas/index.json#/UpdateProdutorInput"
+          },
+          "example": {
+            "nome": "Teste",
+            "nomeFazenda": "Fazenda Teste",
+            "cidade": "Barueri",
+            "estado": "São Paulo",
+            "areaTotalFazenda": 200,
+            "areaAgricultavelFazenda": 100,
+            "areaVegetacaoFazenda": 100,
+            "culturasFazenda": [
+              "café",
+              "cana"
+            ]
+          }
+        }
+      }
+    },
+    "responses": {
+      "200": {
+        "description": "Retorna o Produtor atualizado",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "../schemas/index.json#/Produtor"
+            }
+          }
+        }
+      },
+      "400": {
+        "description": "Bad Request"
+      }
+    }
+  },
+  "delete": {
+    "summary": "Deletar um Produtor",
+    "description": "Deleta um Produtor",
+    "tags": [
+      "produtor"
+    ],
+    "parameters": [
+      {
+        "name": "id",
+        "in": "path",
+        "description": "id do Produtor",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      }
+    ],
+    "responses": {
+      "400": {
+        "description": "Bad Request"
+      },
+      "401": {
+        "description": "Unauthorized"
+      }
+    }
+  }
+}
