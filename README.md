@@ -42,3 +42,38 @@ O mesmo consiste em um cadastro de produtor rural com os seguintes dados:
   - A criação das estruturas de dados "mockados" faz parte da avaliação.
 - O desenvolvedor full-stack deve realizar ambos, e concluir a integração.
   > Não envie a solução como anexo, suba os fontes para seu Github (ou outro repositório) e envie o link para o avaliador.
+
+
+# Execução do projeto
+
+## Tecnologias utilizadas
+
+  - Docker
+  - Node
+  - Typescript
+  - Postgresql
+  - Prisma
+  - Swagger
+  - Zod
+
+Para facilitar a execução da aplicação, o banco de dados postgresql necessário foi incluído em um container docker. Logo, é necessário ter o Docker instalado no sistema.
+
+# Passos para a execução do projeto
+
+- Clonar esse repositório;
+- Entrar no diretório do repositório clonado;
+- Executar o comando `$ docker compose up -d`;
+- Instalar as dependências do projeto e do Prisma com o comando `$ npm install`;
+- Iniciar a aplicação: `$ npm run dev`;
+
+## npm scripts
+
+Scripts que podem ser executados com o comando `$ npm run "script-name"`:
+* `dev`: Inicia a aplicação;
+* `test`: Executa testes unitários;
+* `build`: Realiza build do projeto no diretório `./build`;
+* `start`: Executa o projeto após build;
+
+## Documentação da api
+
+http://localhost:3000/docs
