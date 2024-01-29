@@ -1,12 +1,14 @@
 import e from 'express';
 import 'express-async-errors';
 import produtorRoutes from './produtor/produtor.routes';
+import dashboardRoutes from './dashboard/dashboard.routes';
 import { ZodError } from 'zod';
 import AppErrorHandler from '~/errorHandler/appErrorHandler';
 
 const rootRoutes = e.Router();
 
 rootRoutes.use('/produtor', produtorRoutes);
+rootRoutes.use('/dashboard', dashboardRoutes);
 
 rootRoutes.use(
   async (error: Error, _request: e.Request, response: e.Response, _nextFunction: e.NextFunction) => {
