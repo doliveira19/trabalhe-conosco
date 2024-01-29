@@ -1,0 +1,11 @@
+services:
+  db:
+    image: postgres:13
+    restart: always
+    container_name: brain-ag-db-test
+    ports:
+      - '5434:5432'
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: brain-ag-db-test
