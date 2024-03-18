@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "API Brain Ag",
-    "description": "Documentação da API contendo CRUD de Produtores e Totais para Dashboard",
+    "title": "API Produtor Rural",
+    "description": "Documentação da API contendo CRUD de Produtores Rurais e Totais para Dashboard",
     "version": "1.0.0"
   },
   "servers": [
@@ -13,8 +13,8 @@
   ],
   "tags": [
     {
-      "name": "produtor",
-      "description": "CRUD de Produtores"
+      "name": "producer",
+      "description": "CRUD de Produtores Rurais (Producers)"
     },
     {
       "name": "dashboard",
@@ -25,9 +25,9 @@
     "/dashboard/totals": {
       "get": {
         "summary": "Retornar Totais Dashboard",
-        "description": "Retorna Totais para Dashboard (Total de fazendas em quantidade, Total de fazendas em hectares (área total), total por estado, total por cultura, total por uso de solo (Área agricultável e vegetação)",
+        "description": "Retorna Totais para Dashboard (Total de fazendas em quantidade, Total de Fazendas em hectares (área total), Total de Fazendas por Estado, Total por Uso de Solo (Área agricultável e vegetação)",
         "tags": [
-          "tools"
+          "dashboard"
         ],
         "responses": {
           "200": {
@@ -46,29 +46,29 @@
         }
       }
     },
-    "/produtor": {
+    "/producer": {
       "post": {
         "summary": "Criar Produtor",
         "description": "Realiza o cadastro de um Produtor",
         "tags": [
-          "produtor"
+          "producer"
         ],
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Produtor"
+                "$ref": "#/components/schemas/Producer"
               },
               "example": {
-                "documento": "67342387096",
-                "nome": "Teste",
-                "nomeFazenda": "Fazenda Teste",
-                "cidade": "Barueri",
-                "estado": "São Paulo",
-                "areaTotalFazenda": 200,
-                "areaAgricultavelFazenda": 100,
-                "areaVegetacaoFazenda": 100,
-                "culturasFazenda": [
+                "document": "67342387096",
+                "name": "Teste",
+                "farmName": "Fazenda Teste",
+                "city": "Barueri",
+                "state": "São Paulo",
+                "farmTotalArea": 200,
+                "farmArableTotal": 100,
+                "farmVegetationArea": 100,
+                "farmCrops": [
                   "café",
                   "cana"
                 ]
@@ -82,7 +82,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Produtor"
+                  "$ref": "#/components/schemas/Producer"
                 }
               }
             }
@@ -96,7 +96,7 @@
         "summary": "Retornar todos os Produtores",
         "description": "Retorna todos os Produtores",
         "tags": [
-          "produtor"
+          "producer"
         ],
         "responses": {
           "200": {
@@ -104,7 +104,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Produtor"
+                  "$ref": "#/components/schemas/Producer"
                 }
               }
             }
@@ -115,12 +115,12 @@
         }
       }
     },
-    "/produtor/{id}": {
+    "/producer/{id}": {
       "get": {
         "summary": "Retornar um Produtor",
         "description": "Retorna um Produtor",
         "tags": [
-          "produtor"
+          "producer"
         ],
         "parameters": [
           {
@@ -139,7 +139,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Produtor"
+                  "$ref": "#/components/schemas/Producer"
                 }
               }
             }
@@ -153,7 +153,7 @@
         "summary": "Atualizar um Produtor",
         "description": "Atualiza um Produtor",
         "tags": [
-          "produtor"
+          "producer"
         ],
         "parameters": [
           {
@@ -170,17 +170,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UpdateProdutorInput"
+                "$ref": "#/components/schemas/UpdateProducerInput"
               },
               "example": {
-                "nome": "Teste",
-                "nomeFazenda": "Fazenda Teste",
-                "cidade": "Barueri",
-                "estado": "São Paulo",
-                "areaTotalFazenda": 200,
-                "areaAgricultavelFazenda": 100,
-                "areaVegetacaoFazenda": 100,
-                "culturasFazenda": [
+                "name": "Teste",
+                "farmName": "Fazenda Teste",
+                "city": "Barueri",
+                "state": "São Paulo",
+                "farmTotalArea": 200,
+                "farmArableTotal": 100,
+                "farmVegetationArea": 100,
+                "farmCrops": [
                   "café",
                   "cana"
                 ]
@@ -194,7 +194,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Produtor"
+                  "$ref": "#/components/schemas/Producer"
                 }
               }
             }
@@ -208,7 +208,7 @@
         "summary": "Deletar um Produtor",
         "description": "Deleta um Produtor",
         "tags": [
-          "produtor"
+          "producer"
         ],
         "parameters": [
           {
@@ -237,17 +237,17 @@
       "TotalsDashboard": {
         "type": "object",
         "properties": {
-          "qtyTotalFazendas": {
+          "totalFarmsQuantity": {
             "type": "number"
           },
-          "areaTotalFazendas": {
+          "farmsTotalArea": {
             "type": "number"
           },
-          "fazendasPorEstado": {
+          "farmsByState": {
             "type": "array",
             "items": {
               "properties": {
-                "estado": {
+                "state": {
                   "type": "string"
                 },
                 "area": {
@@ -259,61 +259,45 @@
               }
             }
           },
-          "totalDeCulturas": {
-            "type": "array",
-            "items": {
-              "properties": {
-                "cultura": {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  }
-                },
-                "qty": {
-                  "type": "number"
-                }
-              }
-            }
-          },
-          "areaTotalAgricultavel": {
+          "totalArableArea": {
             "type": "number"
           },
-          "areaTotalVegetacao": {
+          "totalVegetationArea": {
             "type": "number"
           }
         }
       },
-      "Produtor": {
+      "Producer": {
         "type": "object",
         "properties": {
           "id": {
             "type": "number"
           },
-          "nome": {
+          "name": {
             "type": "string"
           },
-          "documento": {
+          "document": {
             "type": "string"
           },
-          "nomeFazenda": {
+          "farmName": {
             "type": "string"
           },
-          "cidade": {
+          "city": {
             "type": "string"
           },
-          "estado": {
+          "state": {
             "type": "string"
           },
-          "areaTotalFazenda": {
+          "farmTotalArea": {
             "type": "number"
           },
-          "areaAgricultavelFazenda": {
+          "farmArableTotal": {
             "type": "number"
           },
-          "areaVegetacaoFazenda": {
+          "farmVegetationArea": {
             "type": "number"
           },
-          "culturasFazenda": {
+          "farmCrops": {
             "type": "array",
             "items": {
               "type": "string"
@@ -321,42 +305,42 @@
           }
         },
         "required": [
-          "nome",
-          "documento",
-          "nomeFazenda",
-          "cidade",
-          "estado",
-          "areaTotalFazenda",
-          "areaAgricultavelFazenda",
-          "areaVegetacaoFazenda",
-          "culturasFazenda"
+          "name",
+          "document",
+          "farmName",
+          "city",
+          "state",
+          "farmTotalArea",
+          "farmArableTotal",
+          "farmVegetationArea",
+          "farmCrops"
         ]
       },
-      "UpdateProdutorInput": {
+      "UpdateProducerInput": {
         "type": "object",
         "properties": {
-          "nome": {
+          "name": {
             "type": "string"
           },
-          "nomeFazenda": {
+          "farmName": {
             "type": "string"
           },
-          "cidade": {
+          "city": {
             "type": "string"
           },
-          "estado": {
+          "state": {
             "type": "string"
           },
-          "areaTotalFazenda": {
+          "farmTotalArea": {
             "type": "number"
           },
-          "areaAgricultavelFazenda": {
+          "farmArableTotal": {
             "type": "number"
           },
-          "areaVegetacaoFazenda": {
+          "farmVegetationArea": {
             "type": "number"
           },
-          "culturasFazenda": {
+          "farmCrops": {
             "type": "array",
             "items": {
               "type": "string"
@@ -364,15 +348,15 @@
           }
         },
         "required": [
-          "nome",
-          "documento",
-          "nomeFazenda",
-          "cidade",
-          "estado",
-          "areaTotalFazenda",
-          "areaAgricultavelFazenda",
-          "areaVegetacaoFazenda",
-          "culturasFazenda"
+          "name",
+          "document",
+          "farmName",
+          "city",
+          "state",
+          "farmTotalArea",
+          "farmArableTotal",
+          "farmVegetationArea",
+          "farmCrops"
         ]
       }
     }

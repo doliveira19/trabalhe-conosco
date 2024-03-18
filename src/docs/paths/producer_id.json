@@ -3,7 +3,7 @@
     "summary": "Retornar um Produtor",
     "description": "Retorna um Produtor",
     "tags": [
-      "produtor"
+      "producer"
     ],
     "parameters": [
       {
@@ -22,7 +22,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "../schemas/index.json#/Produtor"
+              "$ref": "../schemas/index.json#/Producer"
             }
           }
         }
@@ -36,7 +36,7 @@
     "summary": "Atualizar um Produtor",
     "description": "Atualiza um Produtor",
     "tags": [
-      "produtor"
+      "producer"
     ],
     "parameters": [
       {
@@ -53,17 +53,17 @@
       "content": {
         "application/json": {
           "schema": {
-            "$ref": "../schemas/index.json#/UpdateProdutorInput"
+            "$ref": "../schemas/index.json#/UpdateProducerInput"
           },
           "example": {
-            "nome": "Teste",
-            "nomeFazenda": "Fazenda Teste",
-            "cidade": "Barueri",
-            "estado": "São Paulo",
-            "areaTotalFazenda": 200,
-            "areaAgricultavelFazenda": 100,
-            "areaVegetacaoFazenda": 100,
-            "culturasFazenda": [
+            "name": "Teste",
+            "farmName": "Fazenda Teste",
+            "city": "Barueri",
+            "state": "São Paulo",
+            "farmTotalArea": 200,
+            "farmArableTotal": 100,
+            "farmVegetationArea": 100,
+            "farmCrops": [
               "café",
               "cana"
             ]
@@ -77,7 +77,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "../schemas/index.json#/Produtor"
+              "$ref": "../schemas/index.json#/Producer"
             }
           }
         }
@@ -91,7 +91,7 @@
     "summary": "Deletar um Produtor",
     "description": "Deleta um Produtor",
     "tags": [
-      "produtor"
+      "producer"
     ],
     "parameters": [
       {

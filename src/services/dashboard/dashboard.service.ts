@@ -1,17 +1,15 @@
 import { DashboardRepository } from "~/repositories/dashboard/dashboard.repository";
 
-class DashboardService {
+export class DashboardService {
 
   constructor(
     private dashboardRepository: DashboardRepository
   ) { }
 
-  totals = async () => {
+  async totals() {
 
     return await this.dashboardRepository.totals();
 
   };
 
 }
-
-export const dashboardService = new DashboardService(new DashboardRepository());

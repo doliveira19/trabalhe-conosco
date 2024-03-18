@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "API Brain Ag",
-    "description": "Documentação da API contendo CRUD de Produtores e Totais para Dashboard",
+    "title": "API Produtor Rural",
+    "description": "Documentação da API contendo CRUD de Produtores Rurais e Totais para Dashboard",
     "version": "1.0.0"
   },
   "servers": [
@@ -13,8 +13,8 @@
   ],
   "tags": [
     {
-      "name": "produtor",
-      "description": "CRUD de Produtores"
+      "name": "producer",
+      "description": "CRUD de Produtores Rurais (Producers)"
     },
     {
       "name": "dashboard",
@@ -25,11 +25,11 @@
     "/dashboard/totals": {
       "$ref": "./paths/dashboard.json"
     },
-    "/produtor": {
-      "$ref": "./paths/produtor.json"
+    "/producer": {
+      "$ref": "./paths/producer.json"
     },
-    "/produtor/{id}": {
-      "$ref": "./paths/produtor_id.json"
+    "/producer/{id}": {
+      "$ref": "./paths/producer_id.json"
     }
   },
   "components": {

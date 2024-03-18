@@ -11,20 +11,20 @@ generator client {
   previewFeatures = ["interactiveTransactions", "fullTextSearch"]
 }
 
-model Produtor {
-  id                      Int      @id @default(autoincrement())
-  documento               String   @unique @db.VarChar(14)
-  nome                    String   @db.VarChar(64)
-  nomeFazenda             String   @db.VarChar(64)
-  cidade                  String   @db.VarChar(64)
-  estado                  String   @db.VarChar(64)
-  areaTotalFazenda        Decimal  @db.Decimal(10, 2)
-  areaAgricultavelFazenda Decimal  @db.Decimal(10, 2)
-  areaVegetacaoFazenda    Decimal  @db.Decimal(10, 2)
-  culturasFazenda         String[]
+model Producer {
+  id                 Int      @id @default(autoincrement())
+  document           String   @unique @db.VarChar(14)
+  name               String   @db.VarChar(64)
+  farmName           String   @db.VarChar(64)
+  city               String   @db.VarChar(64)
+  state              String   @db.VarChar(64)
+  farmTotalArea      Decimal  @db.Decimal(10, 2)
+  farmArableTotal    Decimal  @db.Decimal(10, 2)
+  farmVegetationArea Decimal  @db.Decimal(10, 2)
+  farmCrops          String[]
 
   createdAt DateTime  @default(now())
   updatedAt DateTime? @default(now())
 
-  @@index([id, nome])
+  @@index([id, name])
 }

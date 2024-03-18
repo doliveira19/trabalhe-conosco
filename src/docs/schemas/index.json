@@ -1,35 +1,35 @@
 {
-  "Produtor": {
+  "Producer": {
     "type": "object",
     "properties": {
       "id": {
         "type": "number"
       },
-      "nome": {
+      "name": {
         "type": "string"
       },
-      "documento": {
+      "document": {
         "type": "string"
       },
-      "nomeFazenda": {
+      "farmName": {
         "type": "string"
       },
-      "cidade": {
+      "city": {
         "type": "string"
       },
-      "estado": {
+      "state": {
         "type": "string"
       },
-      "areaTotalFazenda": {
+      "farmTotalArea": {
         "type": "number"
       },
-      "areaAgricultavelFazenda": {
+      "farmArableTotal": {
         "type": "number"
       },
-      "areaVegetacaoFazenda": {
+      "farmVegetationArea": {
         "type": "number"
       },
-      "culturasFazenda": {
+      "farmCrops": {
         "type": "array",
         "items": {
           "type": "string"
@@ -37,42 +37,42 @@
       }
     },
     "required": [
-      "nome",
-      "documento",
-      "nomeFazenda",
-      "cidade",
-      "estado",
-      "areaTotalFazenda",
-      "areaAgricultavelFazenda",
-      "areaVegetacaoFazenda",
-      "culturasFazenda"
+      "name",
+      "document",
+      "farmName",
+      "city",
+      "state",
+      "farmTotalArea",
+      "farmArableTotal",
+      "farmVegetationArea",
+      "farmCrops"
     ]
   },
-  "UpdateProdutorInput": {
+  "UpdateProducerInput": {
     "type": "object",
     "properties": {
-      "nome": {
+      "name": {
         "type": "string"
       },
-      "nomeFazenda": {
+      "farmName": {
         "type": "string"
       },
-      "cidade": {
+      "city": {
         "type": "string"
       },
-      "estado": {
+      "state": {
         "type": "string"
       },
-      "areaTotalFazenda": {
+      "farmTotalArea": {
         "type": "number"
       },
-      "areaAgricultavelFazenda": {
+      "farmArableTotal": {
         "type": "number"
       },
-      "areaVegetacaoFazenda": {
+      "farmVegetationArea": {
         "type": "number"
       },
-      "culturasFazenda": {
+      "farmCrops": {
         "type": "array",
         "items": {
           "type": "string"
@@ -80,31 +80,31 @@
       }
     },
     "required": [
-      "nome",
-      "documento",
-      "nomeFazenda",
-      "cidade",
-      "estado",
-      "areaTotalFazenda",
-      "areaAgricultavelFazenda",
-      "areaVegetacaoFazenda",
-      "culturasFazenda"
+      "name",
+      "document",
+      "farmName",
+      "city",
+      "state",
+      "farmTotalArea",
+      "farmArableTotal",
+      "farmVegetationArea",
+      "farmCrops"
     ]
   },
   "TotalsDashboard": {
     "type": "object",
     "properties": {
-      "qtyTotalFazendas": {
+      "totalFarmsQuantity": {
         "type": "number"
       },
-      "areaTotalFazendas": {
+      "farmsTotalArea": {
         "type": "number"
       },
-      "fazendasPorEstado": {
+      "farmsByState": {
         "type": "array",
         "items": {
           "properties": {
-            "estado": {
+            "state": {
               "type": "string"
             },
             "area": {
@@ -116,26 +116,10 @@
           }
         }
       },
-      "totalDeCulturas": {
-        "type": "array",
-        "items": {
-          "properties": {
-            "cultura": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            },
-            "qty": {
-              "type": "number"
-            }
-          }
-        }
-      },
-      "areaTotalAgricultavel": {
+      "totalArableArea": {
         "type": "number"
       },
-      "areaTotalVegetacao": {
+      "totalVegetationArea": {
         "type": "number"
       }
     }

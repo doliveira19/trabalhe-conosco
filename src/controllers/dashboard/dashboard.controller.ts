@@ -1,11 +1,15 @@
 import { Request, Response } from 'express';
-import { dashboardService } from '~/services/dashboard/dashboard.service';
+import { DashboardRepository } from '~/repositories/dashboard/dashboard.repository';
+import { DashboardService } from '~/services/dashboard/dashboard.service';
 
 export class DashboardController {
 
-  totals = async (req: Request, res: Response) => {
+  dashboardRepository = new DashboardRepository();
+  dashboardService = new DashboardService(this.dashboardRepository);
 
-    const totalsResp = await dashboardService.totals();
+  async totals(req: Request, res: Response) {
+
+    const totalsResp = await this.dashboardService.totals();
     res.status(200).send(totalsResp || {});
   };
 

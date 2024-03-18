@@ -3,24 +3,24 @@
     "summary": "Criar Produtor",
     "description": "Realiza o cadastro de um Produtor",
     "tags": [
-      "produtor"
+      "producer"
     ],
     "requestBody": {
       "content": {
         "application/json": {
           "schema": {
-            "$ref": "../schemas/index.json#/Produtor"
+            "$ref": "../schemas/index.json#/Producer"
           },
           "example": {
-            "documento": "67342387096",
-            "nome": "Teste",
-            "nomeFazenda": "Fazenda Teste",
-            "cidade": "Barueri",
-            "estado": "São Paulo",
-            "areaTotalFazenda": 200,
-            "areaAgricultavelFazenda": 100,
-            "areaVegetacaoFazenda": 100,
-            "culturasFazenda": [
+            "document": "67342387096",
+            "name": "Teste",
+            "farmName": "Fazenda Teste",
+            "city": "Barueri",
+            "state": "São Paulo",
+            "farmTotalArea": 200,
+            "farmArableTotal": 100,
+            "farmVegetationArea": 100,
+            "farmCrops": [
               "café",
               "cana"
             ]
@@ -34,7 +34,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "../schemas/index.json#/Produtor"
+              "$ref": "../schemas/index.json#/Producer"
             }
           }
         }
@@ -48,7 +48,7 @@
     "summary": "Retornar todos os Produtores",
     "description": "Retorna todos os Produtores",
     "tags": [
-      "produtor"
+      "producer"
     ],
     "responses": {
       "200": {
@@ -56,7 +56,7 @@
         "content": {
           "application/json": {
             "schema": {
-              "$ref": "../schemas/index.json#/Produtor"
+              "$ref": "../schemas/index.json#/Producer"
             }
           }
         }

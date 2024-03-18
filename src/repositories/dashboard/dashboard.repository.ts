@@ -1,97 +1,74 @@
-import prisma from "~/services/prisma";
+import prisma from "~/orm/prisma";
 
 export class DashboardRepository {
 
-  qtyTotalFazendas: number = 0;
-  areaTotalFazendas: number = 0;
-  fazendasPorEstado: any = [];
-  totaldeCulturas: any = [];
-  areaTotalAgricultavel: any = {};
-  areaTotalVegetacao: any = {};
+  totalFarmsQuantity: number = 0;
+  farmsTotalArea: number = 0;
+  farmsByState: any = [];
+  totalArableArea: any = {};
+  totalVegetationArea: any = {};
 
-  totals = async () => {
+  async totals() {
 
-    const [totalFazendas, areaTotalFazendas, fazendasPorEstado, areaAgricultavel, areaVegetacao, totalDeCulturas] = await prisma.$transaction([
+    const [totalFazendas, farmsTotalArea, farmsByState, totalArableArea, totalVegetationArea] = await prisma.$transaction([
 
       // total de fazendas
-      prisma.produtor.count(),
+      prisma.producer.count(),
 
       // area total de fazendas
-      prisma.produtor.aggregate({
+      prisma.producer.aggregate({
         _sum: {
-          areaTotalFazenda: true,
+          farmTotalArea: true,
         },
       }),
 
       // fazendas por estado
-      prisma.produtor.groupBy({
-        by: ["estado"],
+      prisma.producer.groupBy({
+        by: ["state"],
         _sum: {
-          areaTotalFazenda: true,
-
+          farmTotalArea: true,
         },
         _count: true,
         orderBy: {
-          estado: 'asc',
+          state: 'asc',
         }
       }),
 
       // area agricultavel
-      prisma.produtor.aggregate({
+      prisma.producer.aggregate({
         _sum: {
-          areaAgricultavelFazenda: true,
+          farmArableTotal: true,
         },
       }),
 
       // area vegetação
-      prisma.produtor.aggregate({
+      prisma.producer.aggregate({
         _sum: {
-          areaVegetacaoFazenda: true,
+          farmVegetationArea: true,
         },
       }),
 
-      // area culturas
-      prisma.produtor.groupBy({
-        by: ["culturasFazenda"],
-        _sum: {
-          areaAgricultavelFazenda: true,
-        },
-        _count: true,
-        orderBy: {
-          culturasFazenda: 'asc'
-        },
-      })
-
     ])
 
-    this.qtyTotalFazendas = totalFazendas;
-    this.areaTotalFazendas = Number(areaTotalFazendas._sum.areaTotalFazenda);
-    this.areaTotalAgricultavel = Number(areaAgricultavel._sum.areaAgricultavelFazenda);
-    this.areaTotalVegetacao = Number(areaVegetacao._sum.areaVegetacaoFazenda);
+    this.totalFarmsQuantity = totalFazendas;
+    this.farmsTotalArea = Number(farmsTotalArea._sum.farmTotalArea);
+    this.totalArableArea = Number(totalArableArea._sum.farmArableTotal);
+    this.totalVegetationArea = Number(totalVegetationArea._sum.farmVegetationArea);
 
-    this.fazendasPorEstado = fazendasPorEstado.map((estado) => {
+    this.farmsByState = farmsByState.map((state) => {
       return {
-        estado: estado.estado,
-        area: estado._sum?.areaTotalFazenda,
-        qty: estado._count
-      }
-    });
-
-    this.totaldeCulturas = totalDeCulturas.map((cultura) => {
-      return {
-        cultura: cultura.culturasFazenda,
-        area: cultura._sum?.areaTotalFazenda,
-        qty: cultura._count
+        state: state.state,
+        area: state._sum?.farmTotalArea,
+        qty: state._count
       }
     });
 
     return {
-      qtyTotalFazendas: this.qtyTotalFazendas,
-      areaTotalFazendas: this.areaTotalFazendas,
-      fazendasPorEstado: this.fazendasPorEstado,
-      totalDeCulturas: this.totaldeCulturas,
-      areaTotalAgricultavel: this.areaTotalAgricultavel,
-      areaTotalVegetacao: this.areaTotalVegetacao
+      totalFarmsQuantity: this.totalFarmsQuantity,
+      farmsTotalArea: this.farmsTotalArea,
+      farmsByState: this.farmsByState,
+      totalArableArea: this.totalArableArea,
+      totalVegetationArea: this.totalVegetationArea,
     }
 
   };

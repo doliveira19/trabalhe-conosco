@@ -1,21 +1,17 @@
 import e from 'express';
 import 'express-async-errors';
-import produtorRoutes from './produtor/produtor.routes';
+import producerRoutes from './producer/producer.routes';
 import dashboardRoutes from './dashboard/dashboard.routes';
 import { ZodError } from 'zod';
 import AppErrorHandler from '~/errorHandler/appErrorHandler';
 
 const rootRoutes = e.Router();
 
-rootRoutes.use('/produtor', produtorRoutes);
+rootRoutes.use('/producer', producerRoutes);
 rootRoutes.use('/dashboard', dashboardRoutes);
 
 rootRoutes.use(
   async (error: Error, _request: e.Request, response: e.Response, _nextFunction: e.NextFunction) => {
-
-    if (error.name && error.name.includes('Token')) {
-      return response.status(401).json({ message: 'Token inválido' });
-    }
 
     if (error instanceof ZodError) {
       let errors: string = 'ZodError: ';

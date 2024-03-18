@@ -1,1 +1,1 @@
-export * from './produtor/produtor.validation';
+export * from './producer/producer.validation';

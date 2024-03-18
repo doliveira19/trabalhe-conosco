@@ -1,9 +1,9 @@
 {
   "get": {
     "summary": "Retornar Totais Dashboard",
-    "description": "Retorna Totais para Dashboard (Total de fazendas em quantidade, Total de fazendas em hectares (área total), total por estado, total por cultura, total por uso de solo (Área agricultável e vegetação)",
+    "description": "Retorna Totais para Dashboard (Total de fazendas em quantidade, Total de Fazendas em hectares (área total), Total de Fazendas por Estado, Total por Uso de Solo (Área agricultável e vegetação)",
     "tags": [
-      "tools"
+      "dashboard"
     ],
     "responses": {
       "200": {
