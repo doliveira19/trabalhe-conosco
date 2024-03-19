@@ -1,3 +1,4 @@
+import { DashboardTotalsDTO } from "~/dtos/dashboard/dashboard.total.dto";
 import { DashboardRepository } from "~/repositories/dashboard/dashboard.repository";
 
 export class DashboardService {
@@ -6,7 +7,7 @@ export class DashboardService {
     private dashboardRepository: DashboardRepository
   ) { }
 
-  async totals() {
+  totals = async (): Promise<DashboardTotalsDTO> => {
 
     return await this.dashboardRepository.totals();
 

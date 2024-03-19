@@ -1,3 +1,4 @@
+import { DashboardTotalsDTO } from "~/dtos/dashboard/dashboard.total.dto";
 import prisma from "~/orm/prisma";
 
 export class DashboardRepository {
@@ -5,10 +6,10 @@ export class DashboardRepository {
   totalFarmsQuantity: number = 0;
   farmsTotalArea: number = 0;
   farmsByState: any = [];
-  totalArableArea: any = {};
-  totalVegetationArea: any = {};
+  totalArableArea: number = 0;
+  totalVegetationArea: number = 0;
 
-  async totals() {
+  totals = async (): Promise<DashboardTotalsDTO> => {
 
     const [totalFazendas, farmsTotalArea, farmsByState, totalArableArea, totalVegetationArea] = await prisma.$transaction([
 

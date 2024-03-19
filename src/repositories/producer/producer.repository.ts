@@ -1,4 +1,6 @@
-import { ICreateProducer, IUpdateProducer } from "~/entities/producer/producer.entity";
+import { ProducerEntity } from "~/entities/producer/producer.entity";
+import { CreateProducerDTO } from "~/dtos/producer/create.producer.dto";
+import { UpdateProducerDTO } from "~/dtos/producer/update.producer.dto";
 import AppErrorHandler from "~/errorHandler/appErrorHandler";
 import prisma from "~/orm/prisma";
 import { ProducerValidation } from "~/validations";
@@ -7,7 +9,7 @@ export class ProducerRepository {
 
   private producerValidation = new ProducerValidation();
 
-  async getAllProducers() {
+  getAllProducers = async (): Promise<ProducerEntity[] | []> => {
 
     const producers = await prisma.producer.findMany();
 
@@ -15,7 +17,7 @@ export class ProducerRepository {
 
   };
 
-  async getProducer(idProducer: number) {
+  getProducer = async (idProducer: number): Promise<ProducerEntity> => {
 
     const { id } = this.producerValidation.readProducerValidation.parse({ id: idProducer });
 
@@ -33,7 +35,7 @@ export class ProducerRepository {
 
   };
 
-  async createProducer(data: ICreateProducer) {
+  createProducer = async (data: CreateProducerDTO): Promise<ProducerEntity> => {
 
     const {
       document,
@@ -83,7 +85,7 @@ export class ProducerRepository {
 
   };
 
-  async updateProducer(data: IUpdateProducer) {
+  updateProducer = async (data: UpdateProducerDTO): Promise<ProducerEntity | null> => {
 
     const { idProducer: id, name, farmName, city, state, farmVegetationArea, farmArableTotal, farmTotalArea, farmCrops } = this.producerValidation.updateProducerValidation.parse(data);
 
@@ -125,7 +127,7 @@ export class ProducerRepository {
 
   };
 
-  async deleteProducer(idProducer: number) {
+  deleteProducer = async (idProducer: number): Promise<string> => {
 
     const { id } = this.producerValidation.readProducerValidation.parse({ id: idProducer });
 

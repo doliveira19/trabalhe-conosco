@@ -1,37 +1,16 @@
-export interface ProducerDTO {
+import { Decimal } from "@prisma/client/runtime"
+
+export interface ProducerEntity {
   id: number
   name: string
   document: string
   farmName: string
   city: string
   state: string
-  farmTotalArea: number
-  farmArableTotal: number
-  farmVegetationArea: number
+  farmTotalArea: Decimal
+  farmArableTotal: Decimal
+  farmVegetationArea: Decimal
   farmCrops: string[]
-}
-
-export interface ICreateProducer {
-  name: string
-  document: string
-  farmName: string
-  city: string
-  state: string
-  farmTotalArea: number
-  farmArableTotal: number
-  farmVegetationArea: number
-  farmCrops: string[]
-}
-
-export interface IUpdateProducer {
-  idProducer: number
-  name?: string
-  document?: string
-  farmName?: string
-  city?: string
-  state?: string
-  farmTotalArea?: number
-  farmArableTotal?: number
-  farmVegetationArea?: number
-  farmCrops?: string[]
+  createdAt: Date
+  updatedAt: Date | null
 }

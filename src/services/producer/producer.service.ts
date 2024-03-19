@@ -1,4 +1,6 @@
-import { ICreateProducer, IUpdateProducer } from "~/entities/producer/producer.entity";
+import { CreateProducerDTO } from "~/dtos/producer/create.producer.dto";
+import { UpdateProducerDTO } from "~/dtos/producer/update.producer.dto";
+import { ProducerEntity } from "~/entities/producer/producer.entity";
 import { ProducerRepository } from "~/repositories/producer/producer.repository";
 
 export class ProducerService {
@@ -7,31 +9,31 @@ export class ProducerService {
     private producerRepository: ProducerRepository
   ) { }
 
-  async getAllProducers() {
+  getAllProducers = async (): Promise<ProducerEntity[] | []> => {
 
     return await this.producerRepository.getAllProducers();
 
   };
 
-  async getProducer(idProducer: number) {
+  getProducer = async (idProducer: number): Promise<ProducerEntity> => {
 
     return await this.producerRepository.getProducer(idProducer);
 
   };
 
-  async createProducer(data: ICreateProducer) {
+  createProducer = async (data: CreateProducerDTO): Promise<ProducerEntity> => {
 
     return await this.producerRepository.createProducer(data);
 
   };
 
-  async updateProducer(data: IUpdateProducer) {
+  updateProducer = async (data: UpdateProducerDTO): Promise<ProducerEntity | null> => {
 
     return await this.producerRepository.updateProducer(data);
 
   };
 
-  async deleteProducer(idProducer: number) {
+  deleteProducer = async (idProducer: number): Promise<string> => {
 
     return await this.producerRepository.deleteProducer(idProducer);
 
