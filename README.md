@@ -1,6 +1,4 @@
-# Teste - Brain Agriculture
-
-O teste tem como objetivo acurar as habilidades do candidato em resolver alguns problemas relacionados à lógica de programação, regra de negócio e orientação à objetos.
+# API de Cadastro de Produtores Rurais (Producers)
 
 O mesmo consiste em um cadastro de produtor rural com os seguintes dados:
 
@@ -24,32 +22,26 @@ O mesmo consiste em um cadastro de produtor rural com os seguintes dados:
   - Total de fazendas em quantidade
   - Total de fazendas em hectares (área total)
   - Gráfico de pizza por estado.
-  - Gráfico de pizza por cultura.
   - Gráfico de pizza por uso de solo (Área agricultável e vegetação)
 
 # Requisitos técnicos
 
-- O desenvolvedor front-end deverá utilizar:
-
-  - [ReactJS](http://reactjs.org);
-  - [Redux](https://redux.js.org/) para controlar o estado da aplicação.
-    - Caso entenda que faça sentido, utilize [Context API](https://reactjs.org/docs/context.html) como recurso adicional ou substituto ao Redux (Opcional)
-  - Crie pelo menos um teste unitário por componente (Opcional)
-  - A criação das estruturas de dados "mockados" faz parte da avaliação.
-
-- O desenvolvedor back-end deve:
   - Salvar os dados em um banco de dados Postgres usando o NodeJS como layer de Backend, e entregar os endpoints para cadastrar, editar, e excluir produtores rurais, além do endpoint que retorne os totais para o dashboard.
-  - A criação das estruturas de dados "mockados" faz parte da avaliação.
-- O desenvolvedor full-stack deve realizar ambos, e concluir a integração.
-  > Não envie a solução como anexo, suba os fontes para seu Github (ou outro repositório) e envie o link para o avaliador.
 
+# Desenvolvimento da aplicação
+
+O desenvolvimento da aplicação foi pensado usando algumas camadas da Arquitetura Limpa, mais precisamente as camadas de Entidade e Caso de Uso (aqui tratei com Serviços ou Services) e tendo um controlador para direcionar as requisições da API, bem como Repositórios para fazer as operações de Banco de Dados (nesse caso, foi usado o ORM Prisma para abstrair as queries e operação de insert/update/delete). Também foi criado um Teste Unitário para o principal Caso de Uso, que é a criação de um Produtor Rutal (Producer).
+
+Pontos de melhorias:
+ - Criação de tabela para cadastro de Culturas de Solo para que só seja possível cadastrar um Produtor Rural se Cultura de Solo existir no cadastro, bem como os endpoints para o CRUD dessa tabela;
+ - Inclusão de testes para os demais Casos de Uso;
 
 # Execução do projeto
 
 ## Tecnologias utilizadas
 
   - Docker
-  - Node
+  - NodeJS
   - Typescript
   - Postgresql
   - Prisma
